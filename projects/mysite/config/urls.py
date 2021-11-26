@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# 화면을 보여주기 위한 views 함수 불러오기
+from pybo import views
 
+# URL 매핑을 추가하는 부분
+# URL 끝에는 / 를 붙이는 것이 일반적이다.
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # pybo라는 URL 주소를 추가 index 함수를 화면에 보여줌
+    # path 함수를 사용해 pybo/ URL과 views.index를 매핑
+    path('pybo/', views.index),
 ]
