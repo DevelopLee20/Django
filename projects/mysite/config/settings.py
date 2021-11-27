@@ -33,9 +33,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# 생성된 APPS 목록
 INSTALLED_APPS = [
+    'pybo.apps.PyboConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
+        # sqlite3를 기반으로 데이터베이스를 관리하고 있다.
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
