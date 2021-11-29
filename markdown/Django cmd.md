@@ -106,3 +106,22 @@ python manage.py shell
 ```cmd
 python manage.py createsuperuser
 ```
+
+## 템플릿 태그
+
+```html
+<!-- // 만약 question_list 가 있다면 -->
+{% if question_list %}  
+<ul>
+    <!-- // question_list 내의 모든 요소를 question에 -->
+    {% for question in question_list %} 
+    <li><a href="/pybo/{{question.id}}/">{{question.subject}}</a></li>
+<!-- // 반복 종료 -->
+{% endfor %}    
+</ul>
+<!-- // if else 문 -->
+{% else %}  
+<p>질문이 없습니다.</p>
+<!-- if 종료 문 -->
+{% endif %} 
+```
