@@ -125,3 +125,12 @@ python manage.py createsuperuser
 <!-- if 종료 문 -->
 {% endif %} 
 ```
+
+```html
+<!-- models.py에 있는 Question 클래스의 subject -->
+<h1>{{question.subject}}</h1>
+<div>
+    <!-- models.py에 있는 Question 클래스의 content -->
+    {{question.content}}
+</div>
+```

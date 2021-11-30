@@ -6,4 +6,6 @@ from . import views
 urlpatterns = [
     # path 함수를 사용해 pybo/ URL과 views.index를 매핑
     path('', views.index),
+    # path 함수를 사용해 pybo/ URL과 views.detail를 매핑
+    path('<int:question_id>/', views.detail),
 ]
