@@ -10,3 +10,10 @@ def index(request):
     question_list = Question.objects.order_by('-create_date')
     context = {'question_list' : question_list}
     return render(request, 'pybo/question_list.html', context)
+
+def detail(request, question_id):
+    # id = question_id 변수에서 불러와 get으로 특정 데이터를 가져온다.
+    question = Question.objects.get(id=question_id)
+    context = {'question': question}
+    # 질문을 context를 html에 적용한 후 HTML 코드로 변환한다.
+    return render(request, 'pybo/question_detail.html', context)
