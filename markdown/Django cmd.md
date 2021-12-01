@@ -134,3 +134,11 @@ python manage.py createsuperuser
     {{question.content}}
 </div>
 ```
+
+## HTTP 페이지 요청에 대한 반환 코드
+
+```text
+200 : 성공
+500 : 서버 오류 (Internal Server Error)
+404 : 페이지 존재하지 않음 (Not Found)
+```
