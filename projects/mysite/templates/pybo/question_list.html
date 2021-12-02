@@ -1,7 +1,8 @@
 {% if question_list %}
 <ul>
     {% for question in question_list %}
-    <li><a href="/pybo/{{question.id}}/">{{question.subject}}</a></li>
+    <!-- namespace 설정 후, url 지정 방식인데 이해를 아직 못함 -->
+    <li><a href="{% url 'pybo:detail' question.id %}">{{question.subject}}</a></li>
 {% endfor %}
 </ul>
 {% else %}
