@@ -32,4 +32,4 @@ def answer_create(request, question_id):
     # answer_set: Question 모델을 통해 Answer 모델 데이터를 생성
     question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
 
-    return redirect('pybo:detail', question_id=question_id)
+    return redirect('pybo:detail', question_id=question_id) 

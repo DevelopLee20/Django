@@ -3,7 +3,16 @@
     {{question.content}}
 </div>
 
-<form action="{ url 'pybo:answer_create' question.id %}" method="post">
+<h5>{{question.answer_set.count}}개의 답변이 있습니다.</h5>
+<div>
+    <ul>
+        {% for answer in question.answer_set.all %}
+        <li>{{answer.content}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<form action="{% url 'pybo:answer_create' question.id %}" method="post">
     <!-- 보안관련 코드: 실제 웹 브라우저에서 작성되었는지 확인 -->
     <!-- 보안을 위해서 form 태그 밑에 항상 이 코드를 작성함 -->
     {% csrf_token %}
