@@ -8,6 +8,8 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 # 시간 관련 함수가 들어있음
 from django.utils import timezone
+# 함수에 전달된 값을 참고하여 페이지 이동을 수행한다. (설명 이해 안됨)
+from django.shortcuts import redirect
 
 def index(request):
     # order_by : 특정 속성 기준으로 특정 속성을 정렬, create_date: 작성일시, -create_date: 작성일시 역순
@@ -29,3 +31,5 @@ def answer_create(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     # answer_set: Question 모델을 통해 Answer 모델 데이터를 생성
     question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
+
+    return redirect('pybo:detail', question_id=question_id)
