@@ -1,11 +1,13 @@
 # 페이지 요청에 의한 응답을 할 때 사용하는 클래스
 from django.http import HttpResponse
 # Question 클래스 참조
-from .models import Question
+from .models import Answer, Question
 # 모델 데이터를 HTML로 변환
 from django.shortcuts import render
 # 존재하지 않는 페이지에 접속했을때 404 Error 출력을 위한 import
 from django.shortcuts import get_object_or_404
+# 시간 관련 함수가 들어있음
+from django.utils import timezone
 
 def index(request):
     # order_by : 특정 속성 기준으로 특정 속성을 정렬, create_date: 작성일시, -create_date: 작성일시 역순
@@ -21,3 +23,9 @@ def detail(request, question_id):
     context = {'question': question}
     # 질문을 context를 html에 적용한 후 HTML 코드로 변환한다.
     return render(request, 'pybo/question_detail.html', context)
+
+def answer_create(request, question_id):
+    # question_id가 비정상적으로 반환되면, 404 Error를 출력한다.
+    question = get_object_or_404(Question, pk=question_id)
+    # answer_set: Question 모델을 통해 Answer 모델 데이터를 생성
+    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
