@@ -1,3 +1,7 @@
+<!-- static 폴더 참조 -->
+{% load static %}
+<!-- css 파일 선언 -->
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 <h1>{{question.subject}}</h1>
 <div>
     {{question.content}}
