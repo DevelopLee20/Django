@@ -1,8 +1,5 @@
-{% comment %} <!-- 스태틱 파일에서 bootstrap.min.css 파일을 불러옴 -->
-{% load static %}
-<!-- css 링크 코드 -->
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}"> {% endcomment %}
 {% extends 'base.html' %}
+<!-- 최상단과 하단 주석시 사이트 에러 발생: 이유는 모르겠음 -->
 {% block content %}
 <div class="container my-3">
     <table class="table">
@@ -35,15 +32,5 @@
         </tbody>
     </table>
 </div>
+<!-- 최상단과 하단 주석시 사이트 에러 발생: 이유는 모르겠음 -->
 {% endblock content %}
-
-<!-- {% if question_list %}
-<ul>
-    {% for question in question_list %}
-    <!- namespace 설정 후, url 지정 방식인데 이해를 아직 못함 ->
-    <li><a href="{% url 'pybo:detail' question.id %}">{{question.subject}}</a></li>
-{% endfor %}
-</ul>
-{% else %}
-<p>질문이 없습니다.</p>
-{% endif %} -->

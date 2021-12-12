@@ -1,11 +1,5 @@
-{% comment %} <!-- static 폴더 참조 -->
-{% load static %}
-<!-- css 파일 선언 -->
-<!-- 부트스트랩 css를 참조한 html 문서, 부트스트랩 공식 문서 참조 -->
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}"> {% endcomment %}
-
-{% comment %} base.html 파일을 상속, block content 사이에 사용할 내용 작성 {% endcomment %}
 {% extends 'base.html' %}
+<!-- 최상단과 하단 주석시 사이트 에러 발생: 이유는 모르겠음 -->
 {% block content %}
 <div class="container my-3">
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
@@ -49,27 +43,5 @@
         <input type="submit" value="답변 등록" class="btn btn-primary">
     </form>
 </div>
+<!-- 최상단과 하단 주석시 사이트 에러 발생: 이유는 모르겠음 -->
 {% endblock content %}
-
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-<h1>{{question.subject}}</h1>
-<div>
-    {{question.content}}
-</div>
-
-<h5>{{question.answer_set.count}}개의 답변이 있습니다.</h5>
-<div>
-    <ul>
-        {% for answer in question.answer_set.all %}
-        <li>{{answer.content}}</li>
-        {% endfor %}
-    </ul>
-</div>
-
-<form action="{% url 'pybo:answer_create' question.id %}" method="post">
-    <!- 보안관련 코드: 실제 웹 브라우저에서 작성되었는지 확인 ->
-    <!- 보안을 위해서 form 태그 밑에 항상 이 코드를 작성함 ->
-    {% csrf_token %}
-    <textarea name="content" id="content" rows="15"></textarea>
-    <input type="submit" value="답변 등록">
-</form> -->
