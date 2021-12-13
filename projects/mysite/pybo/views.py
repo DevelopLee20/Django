@@ -10,6 +10,8 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 # 함수에 전달된 값을 참고하여 페이지 이동을 수행한다. (HTML 대신 url을 타고 이동함)
 from django.shortcuts import redirect
+# QuestionForm: 질문을 등록하기 위해 사용하는 장고의 폼 클래스
+from .forms import QuestionForm
 
 def index(request):
     # order_by : 특정 속성 기준으로 특정 속성을 정렬, create_date: 작성일시, -create_date: 작성일시 역순
@@ -33,3 +35,20 @@ def answer_create(request, question_id):
     question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
     # HTML 대신 url을 타고 이동함
     return redirect('pybo:detail', question_id=question_id)
+
+def question_create(request):
+    # post 방식일떄
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            # commit : 임시저장 여부
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+            return redirect('pybo:index')
+    # get 방식일때
+    else:
+        form = QuestionForm()            
+        # {'form':form} : 템플릿에 폼 화면을 생성
+        context = {'form':form}
+        return render(request, 'pybo/question_form.html', context)

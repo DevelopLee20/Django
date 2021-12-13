@@ -31,6 +31,10 @@
             {% endif %}
         </tbody>
     </table>
+    <!-- btn은 부트스트랩 클래스 -->
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">
+        질문 등록하기
+    </a>
 </div>
 <!-- 최상단과 하단 주석시 사이트 에러 발생: 이유는 모르겠음 -->
 {% endblock content %}
