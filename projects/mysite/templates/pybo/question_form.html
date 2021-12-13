@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h5 class="my-3 border-bottom pb-2">질문 등록</h5>
-    <form mothod="post" class="post-form my-3">
+    <form method="post" class="post-form my-3">
         {% csrf_token %}
         <!--subject와 content에 값을 입력할 수 있는 HTML 코드 자동 생성-->
         <!--{{ form.as_p }}-->
