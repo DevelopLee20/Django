@@ -11,7 +11,7 @@ from django.utils import timezone
 # 함수에 전달된 값을 참고하여 페이지 이동을 수행한다. (HTML 대신 url을 타고 이동함)
 from django.shortcuts import redirect
 # QuestionForm: 질문을 등록하기 위해 사용하는 장고의 폼 클래스
-from .forms import QuestionForm
+from .forms import QuestionForm, AnswerForm
 
 def index(request):
     # order_by : 특정 속성 기준으로 특정 속성을 정렬, create_date: 작성일시, -create_date: 작성일시 역순
@@ -31,10 +31,23 @@ def detail(request, question_id):
 def answer_create(request, question_id):
     # question_id가 비정상적으로 반환되면, 404 Error를 출력한다.
     question = get_object_or_404(Question, pk=question_id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.create_date = timezone.now()
+            answer.question = question
+            answer.save()
+            return redirect('pybo:detail', question_id=question_id)
+    else:
+        form = AnswerForm()
+    context = {'question':question, 'form':form}
+    return render(request,'pybo/question_detail.html', context)
+    
     # answer_set: Question 모델을 통해 Answer 모델 데이터를 생성
-    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
-    # HTML 대신 url을 타고 이동함
-    return redirect('pybo:detail', question_id=question_id)
+    # question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
+    # # HTML 대신 url을 타고 이동함
+    # return redirect('pybo:detail', question_id=question_id)
 
 def question_create(request):
     # post 방식일떄
